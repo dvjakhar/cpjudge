@@ -1,0 +1,126 @@
+.forum-title {
+  margin-left: 17%;
+  margin-top: 60px;
+  margin-bottom: 70px;
+}
+
+.add-new-topic-button {
+  margin-left: 17%;
+  margin-bottom: 30px;
+  border: 2px solid;
+  background-color: black;
+  border-radius: 3px;
+  width: 190px;
+  height: 40px;
+}
+
+.new-topic-button-text {
+  color: white;
+}
+
+.custom-hr {
+  margin-left: 17%;
+  height: 1px;
+  background-color: rgb(236, 228, 228);
+  width: 60%;
+  margin-bottom: 10px;
+}
+
+.close-modal {
+  right: 0;
+  top: 0;
+  position: absolute;
+  padding: 10px;
+  border: 1px solid transparent;
+  width: 70px;
+  height: 70px;
+}
+
+.close-modal-button {
+  font-size: 35px;
+}
+
+.topic-title-modal {
+  margin-left: 30px;
+  font-size: 30px;
+  white-space: nowrap;
+  margin-top: 50px;
+  border-color: transparent;
+  padding: 30px;
+  border: 1px solid #dfdfe0;
+  border-radius: 3px;
+  width: 79%;
+  height: 100px;
+}
+
+.topic-body-modal {
+  margin-left: 30px;
+  font-size: 30px;
+  white-space: nowrap;
+  margin-top: 50px;
+  border-color: transparent;
+  padding: 30px;
+  border: 1px solid dfdfe0;
+  border-radius: 3px;
+  width: 94%;
+  height: 500px;
+  min-height: 15%;
+}
+
+.post-button-modal {
+  font-size: 30px;
+  margin-top: 50px;
+  border-color: transparent;
+  width: 10%;
+  height: 100px;
+  margin-left: 5%;
+  border-radius: 3%;
+}
+
+.post-button-modal:hover {
+  background-color: white;
+}
+
+.post-details {
+  color: black;
+}
+
+.tags-input-box {
+  width: 94%;
+}
+
+.MdEditor-customize {
+  width: 94%;
+  margin-left: 30px;
+  margin-top: 30px;
+}
+
+.md-editor-toolbar button {
+  margin-top: 0;
+  height: 70px !important;
+  width: 70px !important;
+  padding: 0px 0px;
+}
+
+.md-editor-toolbar svg {
+  height: 25px;
+  width:  25px;
+}
+
+.CodeMirror pre {
+  font-size: 25px !important;
+}
+
+.wmde-markdown {
+  font-size: 25px !important;
+}
+
+.new-post-heading {
+  margin-left: 40%;
+  margin-top: 60px;
+  margin-bottom: 70px;
+}
+
+.CodeMirror-linenumber .CodeMirror-gutter-elt {
+  font-size: 25px;
+}

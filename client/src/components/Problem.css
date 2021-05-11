@@ -1,0 +1,45 @@
+.problem-area {
+  padding: 40px;
+  font-size: 14px;
+  overflow-y: auto;
+}
+
+.problem-area .title {
+  font-size: 30px;
+}
+
+.problem-area .section-title {
+  font-size: 18px;
+  margin-bottom: 0.3rem;
+}
+
+.problem-area .header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.statement {
+  background-color: #fff;
+  display: block;
+  font-size: 1.4rem;
+  font-family: helvetica neue,Helvetica,Arial,sans-serif;
+  line-height: 1.4em;
+}
+
+.section-title {
+  font-size: 30px !important;
+}
+
+.sample-tests {
+  margin-left: 2px;
+}
+
+.bookmarks-icon {
+  margin-left: 1%;
+}
+
+.problem-area{
+  min-height: 85vh;
+  max-height: 85vh;
+  overflow-y: auto;
+}

@@ -1,0 +1,90 @@
+.profile-pic {
+  height: 70px;
+  width: 70px;
+  border-radius: 100%;
+  margin-top: -50px;
+  margin-left: 17%;
+  display: inline-block;
+}
+
+.post-title-header {
+  color: black;
+  display: inline-block;
+  margin-left: 30px;
+  width: 800px;
+  max-width: 800px;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  margin-top: 10px;
+}
+
+.post-title-footer {
+  margin-left: 30px;
+  margin-top: -10px;
+  color: gray;
+}
+
+.thumbs-up-button {
+  margin-left: 200px;
+  font-size: 30px;
+  border: transparent;
+  background-color: white;
+  letter-spacing: 10px;
+}
+
+.thumbs-down-button {
+  font-size: 30px;
+  border: transparent;
+  background-color: white;
+  letter-spacing: 10px;
+  margin-left: 20px;
+}
+
+.customize-hr {
+  margin-left: 17%;
+  width: 60%;
+}
+
+
+
+
+
+
+
+/* .user-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  margin-left: 17%;
+  margin-top: -80px;
+  margin-bottom: 10px;
+}
+
+.custom-hr {
+  margin-left: 17%;
+  height: 2px;
+  width: 100%;
+  background-color: rgb(236, 228, 228);
+  width: 60%;
+}
+
+.topic-title {
+  display: inline-block;
+  margin-left: 30px;
+  font-size: 30px;
+  max-width: 800px;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  margin-top: 20px;
+}
+
+.post-header-details {
+  font-size: 20px;
+  color: gray;
+}
+
+.thumbs-up-icon {
+  margin-left: 650px;
+} */

@@ -1,0 +1,92 @@
+.post-title {
+  margin-top: 90px;
+  margin-left: 17%;
+  max-width: 66%;
+}
+
+.customize-hr {
+  margin-left: 17%;
+  
+}
+
+.profile-pic-topic {
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  margin-left: 40px;
+  display: inline-block;
+}
+
+.post-author {
+  margin-left: 20px;
+  color: gray
+}
+
+.creation-time-text{
+  margin-left: 15px;
+  color: gray;
+}
+
+.topic-body {
+  max-width: 66%;
+  margin-left: 17%;
+  margin-top: 30px;
+  font-size: 30px;
+  margin-bottom: 30px;
+  white-space: pre-wrap;
+}
+
+.post-tags {
+  background-color: rgb(240, 236, 236);
+  margin-left: 5px;
+  margin-right: 5px;
+  border: 1px solid;
+  border-color: transparent; 
+  margin-bottom: 50px;
+}
+
+.tags-section {
+  margin-left: 17%;
+  font-size: 25px;
+  max-width: 66%;
+  white-space: initial;
+  margin-top: 25px;
+}
+
+.comment-section {
+  margin-top: 40px;
+  margin-left: 17%;
+  width: 60%;
+  margin-bottom: 300px;
+  font-size: 100px;
+}
+
+#thread__wrapper {
+  font-size: 50px !important;
+}
+
+.upvote-downvote-panel {
+  margin-left: 9%;
+  display: inline;
+}
+
+.upvote-button-img {
+  width: 120px;
+  height: 120px;
+  margin-top: -105px;
+  cursor: pointer;
+}
+
+.downvote-button-img {
+  width: 120px;
+  height: 110px;
+  margin-top: 80px;
+  margin-left: -68px;
+  cursor: pointer;
+}
+
+.votes-count {
+  font-size: 30px;
+  display: inline;
+  margin-left: -72px;
+}
