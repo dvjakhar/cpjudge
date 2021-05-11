@@ -287,6 +287,17 @@ module.exports = function(app, passport) {
         })
     })
 
+    app.post('/getUserWithUsername', function(req, res){
+        var username = req.body.username
+        User.findOne({username: username}, (err, foundUser) => {
+            if(err){
+                console.log(err)
+            }else{
+                res.json({user: foundUser})
+            }
+        })
+    })
+
     // app.use((req, res, next) => {
     //     res.send('Page not found')
     //   });

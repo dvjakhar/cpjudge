@@ -97,7 +97,7 @@ class Header extends React.Component {
                   			{username}
                 			</Link>
                 			<div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  			<Link className="dropdown-item" to="/profile">Profile</Link>
+                  			<Link className="dropdown-item" to={"/user/" + this.state.username}>Profile</Link>
                   			<Link onClick={this.logOutUser} className="dropdown-item" to="#">Logout</Link>
                 			</div>
               			</li>
@@ -106,7 +106,6 @@ class Header extends React.Component {
               			</li>
             			</ul>
 								</div>
-
         			</ul>
       			</div>
     			</nav>

@@ -94,7 +94,7 @@ class App extends React.Component {
 						<td>{i+1}</td>
 						<td className="problem-name"><Link to={url}>{workspace.problem.title}</Link></td>
 						<td>{workspace.problem.difficulty}</td>
-						<td>{workspace.problem.solved}</td>
+						{/* <td>{workspace.problem.solved}</td> */}
 						<td>{workspace.problem.author}</td>
 						<td>Codeforces</td>
 					</tr>
@@ -125,7 +125,7 @@ class App extends React.Component {
 											<th>#</th>
 											<th>Problem Name</th>
 											<th>Difficulty</th>
-											<th>Solved</th>
+											{/* <th>Solved</th> */}
 											<th>Author</th>
 											<th>Source</th>
 										</tr>

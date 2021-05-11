@@ -8,6 +8,7 @@ import Login from "./components/auth/Login"
 import Register from "./components/auth/Register"
 import PageNotFound from "./components/PageNotFound"
 import WorkspacePage from './pages/WorkspacePage';
+import ProfilePage from './pages/ProfilePage'
 import IndexPage from './pages/IndexPage';
 import SharePage from './pages/SharePage';
 import TopicPage from './pages/TopicPage'
@@ -37,6 +38,7 @@ class App extends React.Component {
               <Route exact path='/login' component={Login}></Route>
               <Route exact path='/register' component={Register} />
               <Route exact path="/forum/topic/:id" component={TopicPage} />
+              <Route exact path='/user/:username' component={ProfilePage} />
               {/* <Route exact path="/" component={IndexPage} /> */}
               <Route exact path="/workspace" component={WorkspacePage} />
               <Route exact path="/workspace/:id" component={WorkspacePage} />
