@@ -1,19 +1,18 @@
 .post-title {
-  margin-top: 90px;
+  margin-top: 10%;
   margin-left: 17%;
   max-width: 66%;
 }
 
-.customize-hr {
+.customize-hr1 {
   margin-left: 17%;
-  
+  max-width: 60;
 }
 
 .profile-pic-topic {
   height: 40px;
   width: 40px;
   border-radius: 100%;
-  margin-left: 40px;
   display: inline-block;
 }
 
@@ -28,12 +27,16 @@
 }
 
 .topic-body {
-  max-width: 66%;
-  margin-left: 17%;
-  margin-top: 30px;
+  /* max-width: 100%; */
+  margin-top: 4%;
   font-size: 30px;
   margin-bottom: 30px;
   white-space: pre-wrap;
+  /* -webkit-box-flex: 1;
+    flex: 1;
+    max-width: 100%;
+    min-width: 0;
+  width: 600px; */
 }
 
 .post-tags {
@@ -65,21 +68,20 @@
   font-size: 50px !important;
 }
 
-.upvote-downvote-panel {
+/* .upvote-downvote-panel {
   margin-left: 9%;
   display: inline;
-}
+} */
 
-.upvote-button-img {
-  width: 120px;
-  height: 120px;
+/* .upvote-button {
+  font-size: 120px;
   margin-top: -105px;
   cursor: pointer;
+  vertical-align: middle;
 }
 
-.downvote-button-img {
-  width: 120px;
-  height: 110px;
+.downvote-button {
+  font-size: 120px;
   margin-top: 80px;
   margin-left: -68px;
   cursor: pointer;
@@ -89,4 +91,90 @@
   font-size: 30px;
   display: inline;
   margin-left: -72px;
+} */
+
+/* .action-area {
+  margin-right: 20px;
+  box-sizing: border-box;
+  display: block;
+} */
+
+.upvote-downvote-panel {
+  width: 3%;
+  margin-right: 70px;
+  margin-top: 200px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  margin-left: 10.5%;
+  max-height: 1%;
+  /* justify-content: center; */
+}
+
+.upvote-button {
+  padding: 2px 7px;
+    border-radius: 3px;
+    font-size: 100px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    color: #607d8b;
+    background: #f7f9fa;
+    transition: color 0.3s, background-color 0.3s;
+    cursor: pointer;
+}
+
+.upvote-button-svg {
+  vertical-align: middle;
+  fill: currentColor;
+}
+
+.vote-count {
+  line-height: 100px;
+  color: #78909c;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.downvote-button {
+  padding: 2px 7px;
+    border-radius: 3px;
+    font-size: 100px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    color: #607d8b;
+    background: #f7f9fa;
+    transition: color 0.3s, background-color 0.3s;
+    cursor: pointer;
+}
+
+.downvote-button-svg {
+  vertical-align: middle;
+  fill: currentColor;
+}
+
+.container1 {
+  position: relative;
+  display: flex;
+  margin-top: 10px;
+  padding: 0 20px;
+  max-width: 100%;
+}
+
+.post-title1 {
+  margin-bottom: 30px;
+  font-size: 50px;
+}
+
+.this-hr {
+  margin-bottom: 50px;
+}
+
+.post_ {
+  margin-top: 20px;
 }

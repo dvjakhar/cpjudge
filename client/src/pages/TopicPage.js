@@ -20,16 +20,20 @@ class TopicPage extends React.Component {
       isDownvoted: false,
       votes: 0,
       user: null,
-      authMsg: ''
+      authMsg: '',
+      msg: ''
     }
     this.handleUpvote=this.handleUpvote.bind(this)
     this.componentDidMount=this.componentDidMount.bind(this)
+    this.handleUpvote=this.handleUpvote.bind(this)
+    this.handleDownVote=this.handleDownVote.bind(this)
   }
 
   async componentDidMount() {
-    this.getUser()
     this.setState({isLoading: true})
-    const {id} = this.props.match.params
+    await this.getUser()
+    await this.setState({isLoading: true})
+    const {id} = await this.props.match.params
     this.setState({postId: id})
     console.log(id)
     await axios.post('/getPostWithId', {
@@ -44,49 +48,149 @@ class TopicPage extends React.Component {
     }).catch((err) => {
       console.log(err)
     })
+    await this.isAlreadyUpvoted()
+    await this.isAlreadyDownvoted()
+    this.setState({isLoading: false})
   }
 
-  handleUpvote(event) {
+  async isAlreadyUpvoted() {
+    if(!this.state.user){
+      console.log("User is not logged in!")
+    }else{
+      await axios.post('/isAlreadyUpvoted', {
+        postId: this.state.postId,
+        userId: this.state.user._id
+      }).then(res => {
+        if(res.data.yes){
+          this.setState({isUpvoted: true})
+        }else{
+          this.setState({isUpvoted: false})
+        }
+      }).catch(err => {
+        this.setState({msg: "Some error has occured"})
+      })
+    }
+  }
+
+  async isAlreadyDownvoted() {
+    if(!this.state.user){
+      console.log("User is not logged in!")
+    }else{
+      await axios.post('/isAlreadyDownvoted', {
+        postId: this.state.postId,
+        userId: this.state.user._id
+      }).then(res => {
+        if(res.data.yes){
+          this.setState({isDownvoted: true})
+        }else{
+          this.setState({isDownvoted: false})
+        }
+      }).catch(err => {
+        this.setState({msg: "Some error has occured"})
+      })
+    }
+  }
+
+  async handleUpvote(event) {
     event.preventDefault()
     if(!this.state.user){
       this.setState({authMsg: "Please login first to upvote"})
     } else {
-      this.setState({ isDownvoted: false })
       if(this.state.isUpvoted){
-        this.setState((prevState, props) => {
-        return{ isUpvoted: false, votes: prevState.votes - 1 }
+        this.setState((prevState) => {
+          return {votes: prevState.votes - 1}
         })
-      } else{
-        this.setState((prevState, props) => {
-          return{ isUpvoted: true, votes: prevState.votes + 1}
+        this.setState({isUpvoted: false})
+        await axios.post('/removeUpvote', {
+          postId: this.state.postId,
+          userId: this.state.user._id
+        }).then(res => {
+          this.setState({msg: res.data.msg})
+        }).catch(err => {
+          this.setState({msg: err})
+        })
+      }else{
+        this.setState((prevState) => {
+          return {votes: prevState.votes + 1}
+        })
+        this.setState({isUpvoted: true})
+        await axios.post('/addUpvote', {
+          postId: this.state.postId,
+          userId: this.state.user._id
+        }).then(res => {
+          this.setState({msg: res.data.msg})
+        }).catch(err => {
+          this.setState({msg: err})
         })
       }
-      axios.post('/clickedUpvoteButton', {
-        userId: this.state.user._id,
-        postId: this.state.post.id
-      }).then((response) => {
-        if(response.error){
-          this.setState({msg :response.error})
-        } else {
-          this.setState({msg: response.msg})
-        }
-      }).catch((err) => {
-        console.log(err)
+    }
+    if(this.state.isDownvoted){
+      this.setState((prevState) => {
+        return {votes: prevState.votes + 1}
+      })
+      this.setState({isDownvoted: false})
+      await axios.post('/removeDownvote', {
+        postId: this.state.postId, 
+        userId: this.state.user._id
+      }).then(res => {
+        this.setState({msg: res.data.msg})
+      }).catch(err => {
         this.setState({msg: err})
       })
     }
-    
   }
 
-  handleDownVote() {
-    this.setState(function(prev){
-      return {votes: prev.votes-1}
-    })
-    this.setState({ isUpvoted: false, isDownvoted: !this.state.isDownvoted })
+  async handleDownVote(event) {
+    event.preventDefault()
+    if(!this.state.user){
+      this.setState({authMsg: "Please login first to upvote"})
+    } else {
+      if(this.state.isDownvoted){
+        this.setState((prevState) => {
+          return {votes: prevState.votes + 1}
+        })
+        this.setState({isDownvoted: false})
+        await axios.post('/removeDownvote', {
+          postId: this.state.postId,
+          userId: this.state.user._id
+        }).then(res => {
+          this.setState({msg: res.data.msg})
+        }).catch(err => {
+          this.setState({msg: err})
+        })
+      }else{
+        this.setState((prevState) => {
+          return {votes: prevState.votes - 1}
+        })
+        this.setState({isDownvoted: true})
+        await axios.post('/addDownvote', {
+          postId: this.state.postId,
+          userId: this.state.user._id
+        }).then(res => {
+          this.setState({msg: res.data.msg})
+        }).catch(err => {
+          this.setState({msg: err})
+        })
+      }
+      if(this.state.isUpvoted){
+        this.setState((prevState) => {
+          return {votes: prevState.votes - 1}
+        })
+        this.setState({isUpvoted: false})
+        await axios.post('/removeUpvote', {
+          postId: this.state.postId,
+          userId: this.state.user._id
+        }).then(res => {
+          this.setState({msg: res.data.msg})
+        }).catch(err => {
+          this.setState({msg: err})
+        })
+      }
+    }
   }
 
-  getUser() {
-    axios.get('/isUserLoggedIn').then(response => {
+  async getUser() {
+    await axios.get('/isUserLoggedIn').then(response => {
       // console.log(response.data)
       if (response.data.user) {
         console.log(response.data.user)
@@ -154,15 +258,51 @@ class TopicPage extends React.Component {
           {this.state.authMsg}
         </div>
         <div>
-          <h1 className="post-title">{this.state.post.title}</h1>
-          <hr className="customize-hr" />
-          <ul style={{listStyleType: "none", display: "inline"}}>
+      
+          <div className="container1">
+          <div className="upvote-downvote-panel">
+              <div style={{background: this.state.isUpvoted ? "#90a4ae": "#f7f9fa"}} title="Upvote Button" class="upvote-button">
+                <svg viewBox="0 0 24 24" width="1em" height="1em" class="upvote-button-svg" onClick={this.handleUpvote}>
+                  <path fill-rule="evenodd" d="M7 14l5-5 5 5z"></path>
+                </svg>
+              </div>
+              <div title="Vote Count" className="vote-count">
+                <span>{this.state.votes}</span>
+              </div>
+              <div style={{background: this.state.isDownvoted ? "#90a4ae": "#f7f9fa"}} title="Downvote Button" class="downvote-button">
+                <svg viewBox="0 0 24 24" width="1em" height="1em" class="downvote-button-svg" onClick={this.handleDownVote}>
+                  <path fill-rule="evenodd" d="M7 10l5 5 5-5z"></path>
+                </svg>
+              </div>
+            </div>
+            <div className="topic-body">
+              <h1 className="post-title1">{this.state.post.title}</h1>
+              <hr className="this-hr" />
+              <div style={{display: "inline"}}>
+                <Link to="#">
+                  <img className="profile-pic-topic" src="https://assets.leetcode.com/users/jiaming2/avatar_1539060294.png" />
+                  <span className="post-author">{this.state.post.author}</span>
+                </Link>
+                <span className="creation-time-text">Created at: {ans}</span>
+              </div>
+              <div className="post_">
+                <Markdown remarkPlugins={[gfm]} children={body} />
+              </div>
+            </div>
+          <hr style={ !newTags || newTags.length===0 ? {display: "none"}: {} } className="customize-hr1"/>
+          
+          </div>
+          {/* <ul style={{listStyleType: "none", display: "inline"}}>
             <li className="upvote-downvote-panel">
-              <img onClick={this.handleUpvote} className="upvote-button-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Sort_up_font_awesome.svg/768px-Sort_up_font_awesome.svg.png" />
+              <svg viewBox="0 0 24 24" width="1em" height="1em" className="upvote-button" onClick={this.handleUpvote}>
+                <path fill-rule="evenodd" d="M7 14l5-5 5 5z"></path>
+              </svg>
               <div className="votes-count">
                 {this.state.votes}
               </div>
-              <img className="downvote-button-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Sort_down_font_awesome.svg/512px-Sort_down_font_awesome.svg.png" />
+              <svg viewBox="0 0 24 24" width="1em" height="1em" class="downvote-button" onClick={this.handleDownVote}>
+                <path fill-rule="evenodd" d="M7 10l5 5 5-5z"></path>
+              </svg>
             </li>
             <li style={{display: "inline"}}>
             <Link to="#">
@@ -171,11 +311,7 @@ class TopicPage extends React.Component {
             </Link>
             <span className="creation-time-text">Created at: {ans}</span>
             </li>
-          </ul>
-          <div className="topic-body">
-            <Markdown remarkPlugins={[gfm]} children={body} />
-          </div>
-          <hr style={ !newTags || newTags.length===0 ? {display: "none"}: {} } className="customize-hr"/>
+          </ul> */}
           <div style={ newTags ? newTags.length === 0 ? {display: "none"}: {} : {}} className="tags-section">
             <p><b>Tags</b>: {newTags}</p>
           </div>
@@ -195,3 +331,6 @@ class TopicPage extends React.Component {
 }
 
 export default TopicPage
+
+
+// set status to isUpvoted and isDownvoted while startup

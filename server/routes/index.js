@@ -298,6 +298,78 @@ module.exports = function(app, passport) {
         })
     })
 
+    app.post('/removeDownvote', function(req, res){
+        var userId = req.body.userId
+        var postId = req.body.postId
+        Post.findByIdAndUpdate(postId, {$pull: {dislikes: userId}}, (err, success) => {
+            if(err){
+                console.log(err)
+            }else{
+                res.send({msg: "You successfully upvoted the post"})
+            }
+        })
+    })
+
+    app.post('/removeUpvote', function(req, res){
+        var userId = req.body.userId
+        var postId = req.body.postId
+        Post.findByIdAndUpdate(postId, {$pull: {likes: userId}}, (err, success) => {
+            if(err){
+                console.log(err)
+            }else{
+                res.send({msg: "You successfully downvoted the post"})
+            }
+        })
+    })
+
+    app.post('/addUpvote', (req, res) => {
+        var userId = req.body.userId
+        var postId = req.body.postId
+        Post.findByIdAndUpdate(postId, {$addToSet: {likes: userId}}, (err, success) => {
+            if(err){
+                console.log(err)
+            }else{
+                res.send({msg: "You successfully upvoted the post"})
+            }
+        })
+    })
+
+    app.post('/addDownvote', (req, res) => {
+        var userId = req.body.userId
+        var postId = req.body.postId
+        Post.findByIdAndUpdate(postId, {$addToSet: {dislikes: userId}}, (err, success) => {
+            if(err){
+                console.log(err)
+            }else{
+                res.send({msg: "You successfully downvoted the post"})
+            }
+        })
+    })
+
+    app.post('/isAlreadyUpvoted', (req, res) => {
+        var userId = req.body.userId
+        var postId = req.body.postId
+        Post.findById(postId, (err, foundPost) => {
+            if(foundPost.likes.indexOf(userId)>-1){
+                res.json({yes: "Found upvote"})
+            }else{
+                res.json({no: "Not found"})
+            }
+        })
+    })
+
+    app.post('/isAlreadyDownvoted', (req, res) => {
+        var userId = req.body.userId
+        var postId = req.body.postId
+        Post.findById(postId, (err, foundPost) => {
+            if(foundPost.dislikes.indexOf(userId)>-1){
+                res.json({yes: "Found downvote"})
+            }else{
+                res.json({no: "Not found"})
+            }
+        })
+    })
+
     // app.use((req, res, next) => {
     //     res.send('Page not found')
     //   });
