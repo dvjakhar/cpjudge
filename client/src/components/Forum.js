@@ -182,7 +182,7 @@ class Forum extends React.Component {
           </Modal>
           <div style={ this.state.isModalOpen ? {display: "none"}: {}}>
             <button className="add-new-topic-button" onClick={this.handleClick}><span className="new-topic-button-text">Post New Topic</span></button>
-            <div className="custom-hr"></div>
+            <div className="custom-hr2"></div>
             { postList }
           </div>
       </div>
