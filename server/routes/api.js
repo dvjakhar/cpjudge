@@ -74,6 +74,17 @@ router.delete('/workspace/:id', async (req, res) => {
   return res.json(await Workspace.findOneAndDelete({ id: req.params.id }));
 });
 
+router.put('/workspace/:id/save', async (req, res) => {
+  if (typeof req.params.id !== 'string')
+    return res.status(400).send('Missing `id` parameter');
+  const obj = await Workspace.findOneAndUpdate(
+    { id: req.params.id },
+    { solution: req.body },
+    { new: true }
+  );
+  return res.json(obj);
+});
+
 router.post('/share', async (req, res) => {
   const { language, code } = req.body;
   if (typeof language !== 'number' || typeof code !== 'string')

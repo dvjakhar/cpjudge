@@ -74,7 +74,7 @@ class Workspace extends Component {
       else alert('An internal error occurred. Please try again.');
       this.setState({ result, tab });
     } catch (e) {
-      alert('Error: ' + JSON.stringify(e.response.data));
+      alert('Error: An error has occured');
     } finally {
       this.setState({ working: false });
     }
