@@ -1,4 +1,4 @@
-# Cp Judge
+# Cp Judge / CP CURATION PLATFORM
 * Developed a problem solving judge with side by side problem statement and code editor using Mern Stack
 * Supported languages are C, C++, Java, Python and Ruby
 * User can run and test their program on custom testcases
